@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="../scss/css/destyle.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/profile.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/cropper.css" charset="UTF-8">
+    <link rel="stylesheet" href="../scss/css/popup.css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs'); %>
+    <main class="profile">
+        <article class="profile__header">
+            <h2>PROFILE EDIT<span>プロフィール編集</span></h2>
+        </article>
+        <article>
+            <form action="/profile/<%= userFlg %>" method="post" enctype="multipart/form-data">
+            <div class="profile__photo cropper-container">
+                <label for="file_upload">
+                <input type="file" id="triming_image" name="triming_image" class="triming-image" accept="image/*"/>
+                <p id = "results" class="profile__photo--userPhoto"><span><img src="../../img/updateProfile.svg"></span><img src="../<%= image %>" alt="" class="userBg"></p>
+                </label>
+            </div>
+            <div class="popup" id="js-popup">
+                <div class="popup-inner">
+                  <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+                  <p><img src="" alt="トリミング画像" id="trimed_image" style="display: none;" /></p>
+                  <p class="crop_btn"><input type="button" id="crop_btn" value="画像をトリミングして送信" /></p>
+                </div>
+                <div class="black-background" id="js-black-bg"></div>
+            </div>
+        </article>
+        <article class="profile__form">
+            <section class="profile__username">
+                <h3>ユーザーネーム</h3>
+                <p><input type="text" name="username" placeholder="ユーザーネーム" value="<%= profile.username %>"></p>
+            </section>
+            <section class="profile__sitelink">
+                <h3>サイトリンク</h3>
+                <p><input type="text" name="sitelink" placeholder="サイトリンク" value="<%= profile.site %>"></p>
+            </section>
+            <section class="profile__info">
+                <h3>PR紹介文</h3>
+                <p><textarea name="info" id="" cols="30" rows="10" placeholder="プロフィール説明文"><%= profile.info %></textarea></p>
+            </section>
+            <section class="profile__subscription">
+                <h3>SNS・サブスクリプションのリンク</h3>
+                <ul>
+                    <li>
+                        <h4 class="profile__subscription--twitter">Twitter</h4>
+                        <input type="text" name="Twitter" value="<%= profile.twitter %>">
+                    </li>
+                    <li>
+                        <h4 class="profile__subscription--instagram">instagram</h4>
+                        <input type="text" name="Instagram" value="<%= profile.instagram %>">
+                    </li>
+                    <li>
+                        <h4 class="profile__subscription--soundcloud">SoundCloud</h4>
+                        <input type="text" name="Soundcloud" value="<%= profile.soundcloud%>">
+                    </li>
+                    <li>
+                        <h4 class="profile__subscription--spotify">Spotify</h4>
+                        <input type="text" name="Spotify" value="<%= profile.spotify%>">
+                    </li>
+                    <li>
+                        <h4 class="profile__subscription--applemusic">AppleMusic</h4>
+                        <input type="text" name="AppleMusic" value="<%= profile.applemusic%>">
+                    </li>
+                </ul>
+            </section>
+            <button type="submit">編集を保存する</button>
+        </form>
+        </article>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../js/cropper.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../js/profile.js"></script>
+    
+</body>
+</html>
+

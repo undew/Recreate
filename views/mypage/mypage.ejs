@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="../scss/css/destyle.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/mypage.css" type="text/css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs'); %>
+    <main class="mypage">
+        <article class="mypage__header">
+            <h2>PROFILE<span>プロフィール</span></h2>
+        </article>
+        <article class="mypage__main">
+            <section class="mypage__user">
+                <img src="../img/user.png" alt="">
+                <h3><%= values[0].username %><input type="hidden" id="userId" value="<%= userFlg %>"></h3>
+                <p class="mypage__user--site"><a href="<%= values[0].site%>"><%= values[0].site %></a></p>
+                <ul>
+                    <% if(values[0].twitter) { %>
+                    <li></li>
+                    <% } %>
+                    <% if(values[0].instagram) { %>
+                    <li></li>
+                    <% } %>
+                    <% if(values[0].soundcloud) { %>
+                    <li></li>
+                    <% } %>
+                    <% if(values[0].spotify) { %>
+                    <li></li>
+                    <% } %>
+                    <% if(values[0].applemusic) { %>
+                    <li></li>
+                    <% } %>
+                </ul>
+                <p class="mypage__user--profile"><a href="/profile/<%= userFlg %>"> プロフィールを編集する</a></p>
+                <p class="mypage__user--logout"><a href="/signout">ログアウトする</a></p>
+            </section>
+            <section class="mypage__contents">
+                <div class="mypage__nav">
+                    <ul>
+                        <li><button id="navPrev">過去の投稿</button></li>
+                        <li><button id="navLike">いいねした投稿</button></li>
+                    </ul>
+                    <div class="mypage__nav--changeButton">
+                        <button id="Arrange">編曲済み</button>
+                        <button id="Unfinished">未完成曲</button>
+                    </div>
+                </div>
+                <div class="mypage__song-header">
+                    <ul>
+                        <li class="mypage__song-header--Title">タイトル</li>
+                        <li class="mypage__song-header--Provider">曲提供者</li>
+                        <li class="mypage__song-header--GoodAndDl">Good / DL</li>
+                    </ul>
+                </div>
+                <div id="songList">
+             </div>
+            </section>
+        </article>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+    <script type="text/javascript" src="../js/slick.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/slick.js"></script>
+    <script type="module" src="../js/mypage.js"></script>
+</body>
+</html>
+

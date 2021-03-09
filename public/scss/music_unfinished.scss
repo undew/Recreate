@@ -1,0 +1,255 @@
+@import 'common.scss';
+@import 'header.scss';
+@import 'footer.scss';
+
+.music_unfinished{
+
+    width:1154px;
+    margin: 0 auto;
+    padding-top: 50px;
+    display:grid;
+    grid-template-columns:293px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "user contents";
+    &__user{
+        grid-area:user;
+        width:273px;
+        h3{
+            padding-top: 15px;
+            font-weight: bold;
+            font-size: 32px;
+        }
+        &--site{
+            padding-top: 15px;
+            background: url('../../img/link.png') no-repeat;
+            background-position: top 40% left;
+            word-wrap:break-word;
+            padding-left: 44px;
+            a{
+                border-bottom: 1px solid #969696;
+                font-size: 14px;
+                color: #969696;
+            }
+        }
+        &--follow{
+            padding-top: 15px;
+            a{
+                display:block;
+                background: $black;
+                line-height: 40px;
+                text-align: center;
+                font-weight: bold;
+                font-size: 14px;
+                color: white;
+            }
+        }
+    }
+    &__contents{
+        grid-area:contents;
+    }
+    &__music{
+        &--sound{
+            padding-top: 20px;
+            padding-left: 73px;
+            #waveform{
+                width:572px;
+                padding-top: 15px;
+                margin-left: 77px;
+            }
+        }
+        &--header{
+            display:grid;
+            grid-template-columns:77px  1fr;
+            grid-template-rows:53px;
+            grid-template-areas:
+            "btn title";
+            
+            #play{
+                grid-area:btn;
+                cursor:pointer;
+                width:53px;
+                height:53px;
+                background-image: url('../../img/arPlay.svg');
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+            }
+            h3{
+                grid-area:title;
+                display:flex;
+                flex-direction:column;
+                font-size: 32px;
+                font-weight: bold;
+                span{
+                    font-size: 12px;
+                    color: gray;
+                }
+            }
+            
+        }
+        #tag{
+            padding-top: 15px;
+            padding-left: 77px;
+            p{
+                display:inline;
+                @include btnFormat();
+                margin: 0;
+            }
+
+        }
+        ul{
+            padding-top: 20px;
+            padding-bottom: 55px;
+            display:flex;
+            justify-content:space-between;
+            li{
+                line-height: 40px;
+            }
+            #likeButton{
+                padding-left: 70px;
+                padding-right: 20px;
+                background-color: $gray;
+                background-image: url('../../img/good.svg');
+                background-repeat:no-repeat;
+                background-position: left 20px top 9px;
+                font-weight: bold;
+                cursor:pointer;
+                &:hover{
+                    color: white;
+                }
+            }
+            .dlButton{
+                background-color: $gray;
+                font-weight: bold;
+                cursor:pointer;
+                button{
+                    display:flex;
+                }
+                &__title{
+                    padding-left: 70px;
+                    padding-right: 70px;
+                }
+                &__val{
+                    display:block;
+                    padding-left: 67px;
+                    padding-right: 25px;
+                    background-color: $black;
+                    background-image: url('../../img/dlWhite.svg');
+                    background-repeat:no-repeat;
+                    background-position: left 20px center;
+                    color: white;
+                }
+            }
+        }
+    }
+    &__info{
+        padding-top: 50px;
+        padding-bottom: 35px;
+        h3{
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border-bottom: 1px solid $gray;
+            line-height: 23px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        p{
+            padding: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    }
+    &__other{
+        h3{
+            padding-bottom: 5px;
+            padding-left: 10px;
+            line-height: 23px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+    }
+    &__otherHeader{
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid $gray;
+        color: $black;
+        ul{
+            display:flex;
+        }
+        &--Title{
+            flex-basis:440px;
+            padding-left: 71px;
+        }
+        &--GoodAndDl{
+            padding-left:260px;
+        }
+    }
+    &__otherMusic{
+        a{
+            display:flex;
+            line-height: 70px;
+            background-color: $gray_clearness;
+            background-image: url("../../img/audioBlack.svg");
+            background-repeat: no-repeat;
+            background-position: left 15px center;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            color: $black;
+            .Title{
+                line-height: 20px;
+                display:flex;
+                flex-direction:column;
+                padding:15px 0px;
+                padding-left: 71px;
+                flex-basis:440px;
+                span{
+                    font-size: 14px;
+                    color:$semiBlack;
+                }
+            }
+            div{
+                padding-left: 260px;
+                line-height: 20px;
+                .mGood,
+                .mDl{
+                    padding: 6px 0px;
+                }
+                .mGood{
+                    padding-left: 30px;
+                    background: url('../../img/dl.svg') no-repeat;
+                    background-position: left center;
+                }
+                .mDl{
+                    padding-left: 30px;
+                    background: url('../../img/good.svg') no-repeat;
+                    background-position: left center;
+                }
+            }
+        }
+    }
+    &__rules{
+        h3{
+            padding-bottom: 5px;
+            padding-left: 10px;
+            border-bottom: 1px solid $gray;
+            line-height: 23px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        ul{
+            display:flex;
+            li{
+                padding:0px 45px;
+                margin: 10px;
+                background: black;
+                line-height: 40px;
+                border-radius: 30px;
+                font-weight: bold;
+                color: white;
+            }
+        }
+    }
+
+}

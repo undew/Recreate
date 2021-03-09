@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="../scss/css/destyle.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/search.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/slick.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/music_arrangement.css">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs'); %>
+    <form action="/download" method="post" class="form">
+        <!-- いいねを押したときに渡さないといけない値一覧 -->
+    <input type="hidden" name="userId" id="userId" value="<%= users.id %>">
+    <input type="hidden" name="musicId" id="musicId" value="<%= music.id %>">
+    <input type="hidden" name="musicName" id="musicName" value="<%= music.mTitle %>">
+    <input type="hidden" name="audioPath" id="audioPath" value="<%= audioPath %>">
+    <input type="hidden" name="filename" id="filename" value="music_arrangement">
+    <input type="hidden" name="likeDB" id="likeDB" value="like_ar">
+    <input type="hidden" name="likeColumn" id="likeColumn" value="ArId">
+    <!-- ここまで -->
+    <main class="music_arrangement">
+    <article class="music_arrangement__user">
+            <img src="../img/user.png" alt="">
+            <h3 class="music_arrangement__user--name"><%= users.username %></h3>
+            <% if(users.site){ %>
+            <p class="music_arrangement__user--site"><a href="https://expressjs.com/ja/api.html#app.use" target="_blank"><%= users.site %></a></p>
+            <% } %>
+            <ul>
+                <% for(var key in subscriptions) { %>
+                    <% if(subscriptions[key]){ %>
+                        <li class="music_arrangement__user--<%= key %>"><a href="<%= subscriptions[key] %>" target="_blank"></a></li>
+                    <% } %>
+                <% } %>
+            </ul>
+            <p class="music_arrangement__user--follow"><a href="/follow">フォローする</a></p>
+    </article>
+    <article class="music_arrangement__contents">
+        <section class="music_arrangement__music">
+            <div class="music_arrangement__music--sound">
+                    <div class="music_arrangement__music--header">
+                        <p id="play">　</p>
+                        <h3><%= music.mTitle%><span><%= music.mCreated%></span></h3>
+                    </div>
+                    <div id="tag"><p><%= music.mTag %></p></div>
+                    <div id="waveform"></div>
+            </div>
+            <ul>
+                <li id="likeButton"><%= music.mGood %><input type="hidden" id="Good" value="<%= music.mGood %>"></li>
+                <li class="dlButton">
+                    <button type="submit"><span class="dlButton__title">音源をダウンロード(.mp3)</span><span class="dlButton__val"><%= music.mDl %></span></button>
+                </li>
+            </ul>
+        </section> 
+        </form>
+        <section class="music_arrangement__other">
+            <h3>未完成曲提供者</h3>
+            <div id="otherUser">
+                <img src="../img/unUser.svg" alt="">
+                <div>
+                    <p class="otherUsername"><%= provider.uName %></p>
+                    <ul>
+                        <li><%= music.mTitle %>の原案となる曲</li>
+                        <li>※音源をクリックすると視聴ページに飛びます。</li>
+                    </ul>
+                    <a href="<%= unfinishedPath %>">
+                            <p><%= provider.uTitle %></p>
+                            <p><%= provider.uGood %></p>
+                            <p><%= provider.uDl %></p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="music_arrangement__info">
+            <h3>概要</h3>
+            <p><%= music.mInfo %></p>
+        </section>
+        <section class="music_arrangement__rules">
+            <h3>楽曲利用について</h3>
+            <ul>
+                <li class="music_arrangement__rules--com">商用利用可能</li>
+                <li class="music_arrangement__rules--rep">転載不可</li>
+            </ul>
+        </section>
+    </article>
+</main>
+    <%- include('../partials/footer.ejs') %>
+    <script type="text/javascript" src="../js/slick.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/slick.js"></script>
+    <script type="text/javascript" src="../js/music_arrangement.js"></script>
+</body>
+</html>

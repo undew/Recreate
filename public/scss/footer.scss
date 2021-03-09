@@ -1,0 +1,27 @@
+@import "common.scss";
+
+main,
+.form{
+    padding-top: 70px;
+}
+.footer{
+    display:flex;
+    width:1147px;
+    margin: 0 auto;
+    margin-top: 290px;
+    &__title{
+        flex-basis:50%;
+        margin: 22px 0px;
+        font-family: "Josefin Sans";
+        font-size: 36px;
+    }
+    &__list{
+        display:flex;
+        line-height: 80px;
+        font-size: 16px;
+        font-weight: bold;
+        li{
+            padding: 0px 20px;
+        }
+    }
+}

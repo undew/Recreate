@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="../scss/css/destyle.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/upload.css" type="text/css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs'); %>
+    <main class="upload">
+        <article class="upload__header">
+            <h2>MUSIC UPLOAD<span>音源を投稿する</span></h2>
+            <div class="upload__header--changeButton">
+                <button id="popularArrange">編曲済み</button>
+                <button id="popularUnfinished">未完成曲</button>
+            </div>
+        </article>
+        <article class="upload__main">
+                <form action="/arrangeResult" method="post" enctype="multipart/form-data">
+                    <div class="arrangeList__main">
+                    <section class="arrangeList__main--file">
+                        <h3>音源ファイル</h3>
+                        <label for="file_upload">
+                            <p>音源を選択する</p>
+                            <input type="file" name="file" id="file" accept="audio/wav,audio/mp3">
+                            <input type="hidden" name="time" id="time" value="">
+                        </label>
+                    </section>
+                    <section class="arrangeList__main--title">
+                        <h3>タイトル</h3>
+                        <input type="text" name="title" value="">
+                    </section>
+                    <section class="arrangeList__main--info">
+                        <h3>概要</h3>
+                        <p><textarea name="info" id="" cols="30" rows="10"></textarea></p>
+                    </section>
+                    <section class="arrangeList__main--tag">
+                        <h3>タグ</h3>
+                        <p><input type="text" name="tag" value=""></p>
+                    </section>
+                    <section class="arrangeList__main--provider">
+                        <h3>使わせてもらう未完成曲</h3>
+                        <select name="provider" id="">
+                            <% for(let i=0;i<musics.length;i++) { %>
+                            <option value="<%= musics[i].id %>">
+                                <%= musics[i].uTitle %> / <%= musics[i].uName %>
+                            </option>
+                            <% } %>
+                        </select>
+                    </section>
+                    </div>
+                    <section class="arrangeList__main--attention">
+                        <ul>
+                            <li><input type="checkbox" id="commercial" name="com" checked="checked"><label for="commercial" class="com">商用利用不可</label></li>
+                            <li><input type="checkbox" id="reprinting" name="rep"><label for="reprinting" class="com">転載不可</label></li>
+                        </ul>
+                    </section>
+                    <button type="submit" class="arrangeList__main--form">音源を投稿する</button>
+                </form>
+        </article>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+    <script type="text/javascript" src="../js/slick.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/slick.js"></script>
+    <script type="module" src="../js/upload.js"></script>
+</body>
+</html>
+

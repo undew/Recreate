@@ -1,0 +1,152 @@
+* {
+  letter-spacing: 1px; }
+
+.header {
+  position: fixed;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  line-height: 70px;
+  font-weight: bold;
+  color: #303841; }
+  .header a {
+    display: block; }
+  .header__logo {
+    padding-left: 42px;
+    background: url("../../img/logo_title.svg") no-repeat;
+    background-position: bottom 65% left;
+    background-size: 32px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 36px; }
+  .header__wrapper {
+    display: flex;
+    margin: 0 auto;
+    width: 60.10417vw; }
+  .header__search {
+    height: 40px;
+    margin: 15px 50px 15px 75px;
+    flex-basis: 45%;
+    position: relative;
+    border: 3px solid #303841;
+    border-radius: 30px; }
+    .header__search input {
+      width: 350px;
+      margin-top: -39px;
+      margin-left: 15px;
+      height: 40px;
+      font-size: 14px; }
+  .header__search::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 6px;
+    right: 10px;
+    background: url("../../img/search.svg") no-repeat;
+    background-position: center center;
+    background-size: 24px; }
+  .header__info {
+    flex-basis: 15%;
+    color: #D3D6DB; }
+  .header__login {
+    flex-basis: 10%;
+    margin: 15px;
+    background: #303841;
+    border: 1px solid #303841;
+    border-radius: 30px;
+    line-height: 40px;
+    text-align: center;
+    color: #D3D6DB; }
+  .header__upload a {
+    padding: 0px 45px;
+    margin: 0px 30px;
+    background: #303841;
+    line-height: 40px;
+    border: 3px solid #303841;
+    border-radius: 30px;
+    font-weight: bold;
+    color: #FFFFFF; }
+  .header__news summary {
+    position: relative;
+    display: block;
+    line-height: 55px; }
+  .header__news summary::-webkit-details-marker {
+    display: none; }
+  .header__name {
+    margin-left: 20px; }
+
+.signUp {
+  width: 566px;
+  margin: 0 auto; }
+  .signUp__contents {
+    margin-top: 160px;
+    border: 1px solid #D3D6DB;
+    text-align: center; }
+    .signUp__contents h2 {
+      margin-top: 100px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 36px; }
+    .signUp__contents ul {
+      width: 274px;
+      margin: 0 auto;
+      margin-top: 78px;
+      text-align: left; }
+    .signUp__contents li {
+      position: relative;
+      margin-top: 45px;
+      line-height: 40px;
+      border-bottom: 1px solid #D3D6DB;
+      font-size: 18px; }
+    .signUp__contents--text:before {
+      content: "UserName";
+      position: absolute;
+      top: -30px;
+      font-size: 14px;
+      color: #D3D6DB; }
+    .signUp__contents--email:before {
+      content: "Email";
+      position: absolute;
+      top: -30px;
+      font-size: 14px;
+      color: #D3D6DB; }
+    .signUp__contents--password:before {
+      content: "Password";
+      position: absolute;
+      top: -30px;
+      font-size: 14px;
+      color: #D3D6DB; }
+    .signUp__contents button {
+      width: 274px;
+      margin-top: 100px;
+      margin-bottom: 50px;
+      background: #303841;
+      border: 1px solid #303841;
+      border-radius: 30px;
+      line-height: 40px;
+      font-size: 18px;
+      text-align: center;
+      color: #FFFFFF; }
+
+main {
+  padding-top: 70px; }
+
+.footer {
+  display: flex;
+  width: 1147px;
+  margin: 0 auto;
+  margin-top: 290px; }
+  .footer__title {
+    flex-basis: 50%;
+    margin: 22px 0px;
+    font-family: "Josefin Sans";
+    font-size: 36px; }
+  .footer__list {
+    display: flex;
+    line-height: 80px;
+    font-size: 16px;
+    font-weight: bold; }
+    .footer__list li {
+      padding: 0px 20px; }
+
+/*# sourceMappingURL=signUp.css.map */

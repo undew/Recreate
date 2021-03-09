@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../scss/css/destyle.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/search.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/slick.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs'); %>
+    
+    <main id="app" class="search">
+        <section>
+            <div class="search__form">
+                <input type="text" name="word" id = "word" class="search__form--searchWord" value="<%= word %>">
+                <button id="btn">検索</button>
+            </div>
+            
+            <div class="search__formResult">
+                <p><%= word %><span>の検索結果</span></p>
+                <nav class="search__formResult--button">
+                    <button v-on:click="showMusicList('Ar')">編曲済み</button>
+                    <button v-on:click="showMusicList('Un')">未完成曲</button>
+                </nav>
+            </div>
+        </section>
+            <article class="search__searchResult">
+                <div class="search__searchResult-header">
+                    <ul>
+                        <li class="search__searchResult-header--Title">タイトル</li>
+                        <li class="search__searchResult-header--Tag">タグ</li>
+                        <li class="search__searchResult-header--Provider">曲提供者</li>
+                        <li class="search__searchResult-header--Created">追加日</li>
+                        <li class="search__searchResult-header--Time">時間</li>
+                        <li class="search__searchResult-header--GoodAndDl">Good / DL</li>
+                    </ul>
+                </div>
+                
+                <template v-if="newList[0]">
+                    <template v-if="arranged">
+                        <div v-for="(music, key) in newList" :key="key">
+                                <div class="search__searchResult-List">
+                                    <a v-bind:href="`/music_arrangement/${ music.id }`">
+                                        <ul class="search__searchResult-content">
+                                            <li class="search__searchResult-content--MusicName">{{ music.mTitle }}<br>
+                                                <span class="search__searchResult-content--UserName">{{ music.mName}}</span>
+                                            </li>
+                                            <li class="search__searchResult-content--Tag">
+                                                <p>{{ music.mTag }}</p> 
+                                            </li>
+                                            <li class="search__searchResult-content--Provider">{{ music.mProvider }}</li>
+                                            <li class="search__searchResult-content--Created">{{ music.mCreated }}</li>
+                                            <li class="search__searchResult-content--Time">{{ music.mTime }}</li>
+                                            <li class="search__searchResult-content--GoodAndDl">
+                                                <p class="search__searchResult-content--Good">{{ music.mGood }}</p>
+                                                <p class="search__searchResult-content--Dl">{{ music.mDl }}</p>
+                                            </li>
+                                        </ul>
+                                    </a>
+                                </div>
+                        </div>
+                    </template>
+                    <template v-else>
+                                <div class="search__searchResult-List">
+                                    <div v-for="(music, key) in newList" :key="key">
+                                    <a v-bind:href="`/music_unfinished/${music.id}`">
+                                        <ul class="search__searchResult-content">
+                                            <li class="search__searchResult-content--MusicName">{{ music.uTitle }}<br>
+                                                <span class="search__searchResult-content--UserName">{{ music.uName}}</span>
+                                            </li>
+                                            <li class="search__searchResult-content--Tag">
+                                                <p>{{ music.mTag }}</p> 
+                                            </li>
+                                            <li class="search__searchResult-content--Provider">{{ music.uProvider }}</li>
+                                            <li class="search__searchResult-content--Created">{{ music.uCreated }}</li>
+                                            <li class="search__searchResult-content--Time">{{ music.uTime }}</li>
+                                            <li class="search__searchResult-content--GoodAndDl">
+                                                <p class="search__searchResult-content--Good">{{ music.uGood }}</p>
+                                                <p class="search__searchResult-content--Dl">{{ music.uDl }}</p>
+                                            </li>
+                                        </ul>
+                                    </a>
+                                </div>
+                            </div>
+                    </template>
+                </template>
+                <template v-else>
+                    <p>検索結果がありません</p>
+                </template>
+            </article>
+    </main>
+    
+    <%- include('../partials/footer.ejs') %>
+    <script src="../js/search.js"></script>
+</body>
+</html>

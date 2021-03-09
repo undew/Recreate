@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="../scss/css/destyle.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/signUp.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/slick.css" type="text/css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs'); %>
+    <main class="signUp">
+        <form action="/signIn" method="post">
+        <article class="signUp__contents">
+            <h2>SIGN IN</h2>
+            <ul>
+                <li class="signUp__contents--email"><input type="email" name="email"></li>
+                <li class="signUp__contents--password"><input type="password" name="password"></li>
+            </ul>
+            <button type="submit">SIGN IN</button>
+        </article>
+        </form>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+    <script type="text/javascript" src="../js/slick.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/slick.js"></script>
+    <script type="module" src="../js/index.js"></script>
+</body>
+</html>

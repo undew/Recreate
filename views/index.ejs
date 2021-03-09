@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="../scss/css/destyle.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/index.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/slick.css" type="text/css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/header.ejs'); %>
+    <% if(messages.success) {%>
+        <div id="flash">
+            <p><%= messages.success %></p>
+        </div>
+        <% }%>
+    <main class="index">
+        <article class="index__firstView">
+            <div class="index__firstView--image">
+                <img src="img/title.svg" alt="">
+            </div>
+            <h2>きっかけを作ろう</h2>
+            <section class="index__slick">
+                <div>
+                    <p>・未完成曲を投稿しよう</p>
+                    <p>・未完成曲をあなたの手で完成へと導こう</p>
+                    <p>・クリエイター同士でつながろう</p>
+                </div>
+                <div>
+                    <p>・未完成曲を投稿しよう</p>
+                    <p>・未完成曲をあなたの手で完成へと導こう</p>
+                    <p>・クリエイター同士でつながろう</p>
+                </div>
+                <div>
+                    <p>・未完成曲を投稿しよう</p>
+                    <p>・未完成曲をあなたの手で完成へと導こう</p>
+                    <p>・クリエイター同士でつながろう</p>
+                </div>
+            </section>
+        </article>
+
+        <section class="index__tagList">
+            <div>
+            <h3>HOTタグ</h3>
+                <ul>
+                    <li class="tagWord">studio one</a></li>
+                    <li class="tagWord">future bass</a></li>
+                    <li class="tagWord">Rap</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="index__main">
+        <article class="index__PopularSong">
+            <h2>Popular Song<br><span>人気の作品</span></h2>
+            <div class="index__PopularSong--changeButton">
+                <button id="popularArrange">編曲済み</button>
+                <button id="popularUnfinished">未完成曲</button>
+            </div>
+            <div class="index__PopularSong-header">
+                <ul>
+                    <li class="index__PopularSong-header--Title">タイトル</li>
+                    <li class="index__PopularSong-header--Tag">タグ</li>
+                    <li class="index__PopularSong-header--Provider">曲提供者</li>
+                    <li class="index__PopularSong-header--Created">追加日</li>
+                    <li class="index__PopularSong-header--Time">時間</li>
+                    <li class="index__PopularSong-header--GoodAndDl">Good / DL</li>
+                </ul>
+            </div>
+            <div id="songList">
+            <% for(var i=0;i < values.length;i++){ %>
+            <a href="/music_arrangement/<%= values[i].id %>">
+                <div class="index__PopularSong-List">
+                    <ul class="index__arrangedSong-content">
+                        <li class="index__arrangedSong-content--MusicName"><%= values[i].mTitle %><br>
+                            <span class="index__arrangedSong-content--UserName"><%= values[i].mName %></span>
+                        </li>
+                        <li class="index__arrangedSong-content--Tag">
+                            <p><%= values[i].mTag %></p>
+                        </li>
+                        <li class="index__arrangedSong-content--Provider"><%= values[i].mProvider %></li>
+                        <li class="index__arrangedSong-content--Created"><%= moment(values[i].mCreated).format('YYYY-MM-DD') %></li>
+                        <li class="index__arrangedSong-content--Time"><%= values[i].mTime %></li>
+                        <li class="index__arrangedSong-content--GoodAndDl">
+                            <p class="index__arrangedSong-content--Good"><%= values[i].mGood %></p>
+                            <p class="index__arrangedSong-content--Dl"><%= values[i].mDl %></p>
+                        </li>
+                    </ul>
+                </div>
+            </a>
+            <% } %> 
+         </div>
+        </article>
+
+        <article class="index__NewSong">
+            <h2>New Song<br><span>新しい作品</span></h2>
+            <div class="index__NewSong--changeButton">
+                <button>編曲済み</button>
+                <button>未完成曲</button>
+            </div>
+            <div class="index__NewSong-header">
+                <ul>
+                    <li class="index__NewSong-header--Title">タイトル</li>
+                    <li class="index__NewSong-header--Tag">タグ</li>
+                    <li class="index__NewSong-header--Provider">曲提供者</li>
+                    <li class="index__NewSong-header--Created">追加日</li>
+                    <li class="index__NewSong-header--Time">時間</li>
+                    <li class="index__NewSong-header--GoodAndDl">Good / DL</li>
+                </ul>
+            </div>
+            <div class="index__NewSong-List">
+                <% for(var i=0;i<8;i++){ %>
+                    <ul class="index__NewSong-content">
+                        <li class="index__NewSong-content--MusicName">MY FOOT<br>
+                            <span class="index_NewSong-content--UserName">undew</span>
+                        </li>
+                        <li class="index__NewSong-content--Tag">
+                            <p>studio one</p>
+                        </li>
+                        <li class="index__NewSong-content--Provider">ごりにゃ</li>
+                        <li class="index__NewSong-content--created">2020/09/15</li>
+                        <li class="index__NewSong-content--Time">3:30</li>
+                        <li class="index__NewSong-content--GoodAndDl">
+                            <p class="index__NewSong-content--Good">500</p>
+                            <p class="index__NewSong-content--Dl">2310</p>
+                        </li>
+                    </ul>
+                    <% } %>
+            </div>
+        </article>
+        <article class="index__Feedback">
+            <h2>Feed Back<br><span>お問い合わせ</span></h2>
+            <ul>
+                <li class="index__Feedback--name"><input type="text" name="name" placeholder="Name"></li>
+                <li class="index__Feedback--email"><input type="email" name="email" placeholder="E-Mail(Address)"></li>
+                <li class="index__Feedback--textarea"><textarea placeholder="Message"></textarea></li>
+            </ul>
+            <button>送信する</button>
+        </article>
+        </div>
+    </main>
+    <%- include('partials/footer.ejs') %>
+    <script type="text/javascript" src="../js/slick.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/slick.js"></script>
+    <script type="module" src="../js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+.header {
+  position: fixed;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  line-height: 70px;
+  font-weight: bold;
+  color: #303841; }
+  .header a {
+    display: block; }
+  .header__logo {
+    padding-left: 42px;
+    background: url("../../img/logo_title.svg") no-repeat;
+    background-position: bottom 65% left;
+    background-size: 32px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 36px; }
+  .header__wrapper {
+    display: flex;
+    margin: 0 auto;
+    width: 60.10417vw; }
+  .header__search {
+    height: 40px;
+    margin: 15px 50px 15px 75px;
+    flex-basis: 45%;
+    position: relative;
+    border: 3px solid #303841;
+    border-radius: 30px; }
+    .header__search input {
+      width: 350px;
+      margin-top: -39px;
+      margin-left: 15px;
+      height: 40px;
+      font-size: 14px; }
+  .header__search::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 6px;
+    right: 10px;
+    background: url("../../img/search.svg") no-repeat;
+    background-position: center center;
+    background-size: 24px; }
+  .header__info {
+    flex-basis: 15%;
+    color: #D3D6DB; }
+  .header__login {
+    flex-basis: 10%;
+    margin: 15px;
+    background: #303841;
+    border: 1px solid #303841;
+    border-radius: 30px;
+    line-height: 40px;
+    text-align: center;
+    color: #D3D6DB; }
+  .header__upload a {
+    padding: 0px 45px;
+    margin: 0px 30px;
+    background: #303841;
+    line-height: 40px;
+    border: 3px solid #303841;
+    border-radius: 30px;
+    font-weight: bold;
+    color: #FFFFFF; }
+  .header__news summary {
+    position: relative;
+    display: block;
+    line-height: 55px; }
+  .header__news summary::-webkit-details-marker {
+    display: none; }
+  .header__name {
+    margin-left: 20px; }
+
+main,
+.form {
+  padding-top: 70px; }
+
+.footer {
+  display: flex;
+  width: 1147px;
+  margin: 0 auto;
+  margin-top: 290px; }
+  .footer__title {
+    flex-basis: 50%;
+    margin: 22px 0px;
+    font-family: "Josefin Sans";
+    font-size: 36px; }
+  .footer__list {
+    display: flex;
+    line-height: 80px;
+    font-size: 16px;
+    font-weight: bold; }
+    .footer__list li {
+      padding: 0px 20px; }
+
+.search {
+  padding-top: 140px; }
+  .search section {
+    width: 860px;
+    margin: 0 auto; }
+  .search__form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    line-height: 60px; }
+    .search__form--searchWord {
+      width: 566px;
+      padding-left: 10px;
+      background: #D3D6DB; }
+    .search__form button {
+      width: 100px;
+      background: #303841;
+      text-align: center;
+      font-weight: bold;
+      color: #D3D6DB; }
+  .search__formResult {
+    margin-top: 55px;
+    text-align: center;
+    font-weight: bold; }
+    .search__formResult p {
+      font-size: 28px; }
+      .search__formResult p span {
+        margin-left: 20px;
+        font-size: 14px; }
+    .search__formResult--button {
+      margin-top: 30px;
+      margin-bottom: 60px; }
+      .search__formResult--button button:first-child {
+        padding: 0px 45px;
+        margin: 0px 30px;
+        background: #303841;
+        line-height: 40px;
+        border: 3px solid #303841;
+        border-radius: 30px;
+        font-weight: bold;
+        color: #FFFFFF; }
+      .search__formResult--button button:last-child {
+        padding: 0px 45px;
+        margin: 0px 30px;
+        background: #FFFFFF;
+        line-height: 40px;
+        border: 3px solid #303841;
+        border-radius: 30px;
+        font-weight: bold;
+        color: #303841; }
+  .search__searchResult {
+    width: 1154px;
+    margin: 0 auto;
+    margin-bottom: 150px; }
+    .search__searchResult h2 {
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 36px;
+      line-height: 34px;
+      font-weight: bold;
+      font-family: 'Roboto';
+      color: #303841; }
+      .search__searchResult h2 span {
+        font-size: 18px;
+        color: #D3D6DB; }
+    .search__searchResult--changeButton {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 70px; }
+      .search__searchResult--changeButton button:first-child {
+        padding: 0px 45px;
+        margin: 0px 30px;
+        background: #303841;
+        line-height: 40px;
+        border: 3px solid #303841;
+        border-radius: 30px;
+        font-weight: bold;
+        color: #FFFFFF; }
+      .search__searchResult--changeButton button:last-child {
+        padding: 0px 45px;
+        margin: 0px 30px;
+        background: #FFFFFF;
+        line-height: 40px;
+        border: 3px solid #303841;
+        border-radius: 30px;
+        font-weight: bold;
+        color: #303841; }
+  .search__searchResult-header {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #303841;
+    color: #303841; }
+    .search__searchResult-header ul {
+      display: flex; }
+    .search__searchResult-header--Title {
+      flex-basis: 440px;
+      padding-left: 74px; }
+    .search__searchResult-header--Tag {
+      flex-basis: 170px; }
+    .search__searchResult-header--Provider {
+      flex-basis: 150px; }
+    .search__searchResult-header--Created {
+      flex-basis: 140px; }
+    .search__searchResult-header--Time {
+      flex-basis: 120px; }
+  .search__searchResult-content {
+    display: flex;
+    margin-bottom: 5px;
+    height: 70px;
+    background: #d3d6db25;
+    align-items: center;
+    font-weight: bold; }
+    .search__searchResult-content--MusicName {
+      flex-basis: 440px;
+      padding-left: 74px;
+      background: url("../../img/play.svg") no-repeat;
+      background-position: center left 20px;
+      background-size: contain;
+      font-size: 16px; }
+    .search__searchResult-content--UserName {
+      font-size: 12px; }
+    .search__searchResult-content--Tag {
+      flex-basis: 170px; }
+    .search__searchResult-content--Provider {
+      flex-basis: 150px; }
+    .search__searchResult-content--Created {
+      flex-basis: 140px; }
+    .search__searchResult-content--Time {
+      flex-basis: 120px; }
+    .search__searchResult-content--GoodAndDl {
+      font-size: 14px; }
+    .search__searchResult-content--Good {
+      background: url("../../img/Good.svg") no-repeat center left; }
+    .search__searchResult-content--Dl {
+      background: url("../../img/dl.svg") no-repeat center left; }
+    .search__searchResult-content--Good, .search__searchResult-content--Dl {
+      padding-left: 30px;
+      background-size: 18px;
+      line-height: 26px; }
+
+/*# sourceMappingURL=search.css.map */

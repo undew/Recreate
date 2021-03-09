@@ -1,0 +1,87 @@
+@import 'common.scss';
+
+.header{
+    position:fixed;
+    z-index:999;
+    width:100%;
+    background: $white;
+    box-shadow:0px 4px 4px rgba(0,0,0,0.25);
+    line-height: 70px;
+    font-weight: bold;
+    color: $black;
+    a{
+        display:block;
+    }
+    &__logo{
+        padding-left: 42px;
+        background: url('../../img/logo_title.svg') no-repeat;
+        background-position: bottom 65% left;
+        background-size: 32px;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 36px;
+    }
+    &__wrapper{
+        display:flex;
+        margin: 0 auto;
+        width:60.10417vw;
+    }
+    &__search{
+        height:40px;
+        margin: 15px 50px 15px 75px;
+        flex-basis:45%;
+        position:relative;  
+        border: 3px solid $black;
+        border-radius: 30px;
+        input{
+            width:350px;
+            margin-top: -39px;
+            margin-left: 15px;
+            height:40px;
+            font-size: 14px;
+        }
+    }
+    &__search::after{
+        content:"";
+        position:absolute;
+        width:24px;
+        height:24px;
+        top:6px;
+        right:10px;
+        background: url('../../img/search.svg') no-repeat;
+        background-position: center center;
+        background-size: 24px;
+    }
+    &__info{
+        flex-basis: 15%;
+        color: $gray;
+    }
+    &__login{
+        flex-basis:10%;
+        margin: 15px;
+        background: $black;
+        border: 1px solid $black;
+        border-radius: 30px;
+        line-height:40px;
+        text-align: center;
+        color: $gray;
+    }
+    &__upload{
+        a{
+        @include btnFormat();
+        }
+    }
+    &__news{
+        summary {
+            position:relative;
+            display: block;
+            line-height: 55px;
+          }
+        summary::-webkit-details-marker {
+            display: none;
+          }
+    }
+    &__name{
+        margin-left: 20px;
+    }
+}
+

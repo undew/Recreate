@@ -1,0 +1,32 @@
+$black:#303841;
+$white:#FFFFFF;
+$gray:#D3D6DB;
+$gray_clearness:#d3d6db25;
+$red:#be3144;
+$flash:#31be8f;
+$semiBlack:#3A4750;
+@mixin btnFormat($color:$black,$bg:$white){
+        padding:0px 45px;
+        margin: 0px 30px;
+        background: $color;
+        line-height: 40px;
+        border: 3px solid $black;
+        border-radius: 30px;
+        font-weight: bold;
+        color: $bg;
+}
+@mixin h2Format{
+        h2{
+                margin-bottom: 30px;
+                text-align: center;
+                font-size: 36px;
+                line-height: 34px;
+                font-weight: bold;
+                font-family: 'Roboto';
+                color: $black;
+                span{
+                    font-size: 18px;
+                    color: $gray;
+                }
+            }
+}

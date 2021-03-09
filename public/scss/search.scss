@@ -1,0 +1,139 @@
+@import 'common.scss';
+@import 'header.scss';
+@import 'footer.scss';
+
+.search{
+    padding-top: 140px;
+    section{
+        width:860px;
+        margin: 0 auto;
+    }
+    &__form{
+        width:100%;
+        display:flex;
+        justify-content: center;
+        line-height: 60px;
+        &--searchWord{
+            width:566px;
+            padding-left: 10px;
+            background: $gray;
+        }
+        button{
+            width:100px;
+            background: $black;
+            text-align: center;
+            font-weight: bold;
+            color: $gray;
+        }
+    }
+    &__formResult{
+        margin-top: 55px;
+        text-align: center;
+        font-weight: bold;
+        p{
+            font-size: 28px;
+            span{
+                margin-left: 20px;
+                font-size: 14px;
+            }
+        }
+        &--button{
+            margin-top: 30px;
+            margin-bottom: 60px;
+            button:first-child{
+                @include btnFormat();
+            }
+            button:last-child{
+                @include btnFormat($white,$black);
+            }
+        }
+    }
+    &__searchResult{
+        width:1154px;
+        margin: 0 auto;
+        margin-bottom: 150px;
+        @include h2Format();
+        &--changeButton{
+            display:flex;
+            justify-content:center;
+            margin-bottom: 70px;
+            button:first-child{
+                @include btnFormat();
+            }
+            button:last-child{
+                @include btnFormat($white,$black);
+            }
+        }
+    }
+    &__searchResult-header{
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid $black;
+        color: $black;
+        ul{
+            display:flex;
+        }
+        &--Title{
+            flex-basis:440px;
+            padding-left: 74px;
+        }
+        &--Tag{
+            flex-basis:170px;
+        }
+        &--Provider{
+            flex-basis:150px;
+        }
+        &--Created{
+            flex-basis:140px;
+        }
+        &--Time{
+            flex-basis:120px;
+        }
+    }
+    &__searchResult-content{
+        display:flex;
+        margin-bottom: 5px;
+        height:70px;
+        background: $gray_clearness;
+        align-items:center;
+        font-weight: bold;
+        &--MusicName{
+            flex-basis:440px;
+            padding-left: 74px;
+            background: url('../../img/play.svg') no-repeat;
+            background-position: center left 20px;
+            background-size: contain;
+            font-size: 16px;
+        }
+        &--UserName{
+            font-size: 12px;
+        }
+        &--Tag{
+            flex-basis:170px;
+        }
+        &--Provider{
+            flex-basis:150px;
+        }
+        &--Created{
+            flex-basis:140px;
+        }
+        &--Time{
+            flex-basis:120px;
+        }
+        &--GoodAndDl{
+            font-size: 14px;
+        }
+        &--Good{
+            background: url('../../img/Good.svg') no-repeat center left;
+        }
+        &--Dl{
+            background: url('../../img/dl.svg') no-repeat center left;
+        }
+        &--Good,
+        &--Dl{
+            padding-left:30px;
+            background-size: 18px;
+            line-height: 26px;
+        }
+    }
+}

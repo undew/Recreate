@@ -1,0 +1,348 @@
+.header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  line-height: 70px;
+  font-weight: bold;
+  color: #303841; }
+  .header a {
+    display: block; }
+  .header__logo {
+    padding-left: 42px;
+    background: url("../../img/logo_title.svg") no-repeat;
+    background-position: bottom 65% left;
+    background-size: 32px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 36px; }
+  .header__wrapper {
+    display: flex;
+    margin: 0 auto;
+    width: 60.10417vw; }
+  .header__search {
+    height: 40px;
+    margin: 15px 50px 15px 75px;
+    flex-basis: 45%;
+    position: relative;
+    border: 3px solid #303841;
+    border-radius: 30px; }
+    .header__search input {
+      width: 350px;
+      margin-top: -39px;
+      margin-left: 15px;
+      height: 40px;
+      font-size: 14px; }
+  .header__search::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 6px;
+    right: 10px;
+    background: url("../../img/search.svg") no-repeat;
+    background-position: center center;
+    background-size: 24px; }
+  .header__info {
+    flex-basis: 15%;
+    color: #D3D6DB; }
+  .header__login {
+    flex-basis: 10%;
+    margin: 15px;
+    background: #303841;
+    border: 1px solid #303841;
+    border-radius: 30px;
+    line-height: 40px;
+    text-align: center;
+    color: #D3D6DB; }
+  .header__upload a {
+    padding: 0px 45px;
+    margin: 0px 30px;
+    background: #303841;
+    line-height: 40px;
+    border: 3px solid #303841;
+    border-radius: 30px;
+    font-weight: bold;
+    color: #FFFFFF; }
+  .header__news summary {
+    position: relative;
+    display: block;
+    line-height: 55px; }
+  .header__news summary::-webkit-details-marker {
+    display: none; }
+  .header__name {
+    margin-left: 20px; }
+
+main,
+.form {
+  padding-top: 70px; }
+
+.footer {
+  display: flex;
+  width: 1147px;
+  margin: 0 auto;
+  margin-top: 290px; }
+  .footer__title {
+    flex-basis: 50%;
+    margin: 22px 0px;
+    font-family: "Josefin Sans";
+    font-size: 36px; }
+  .footer__list {
+    display: flex;
+    line-height: 80px;
+    font-size: 16px;
+    font-weight: bold; }
+    .footer__list li {
+      padding: 0px 20px; }
+
+.music_arrangement {
+  width: 1154px;
+  margin: 0 auto;
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: 293px 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "user contents"; }
+  .music_arrangement__user {
+    grid-area: user;
+    width: 273px; }
+    .music_arrangement__user h3 {
+      padding-top: 15px;
+      font-weight: bold;
+      font-size: 32px; }
+    .music_arrangement__user ul {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 30px; }
+    .music_arrangement__user--twitter {
+      width: 42px;
+      height: 42px;
+      background: url("../../img/twitter.svg") no-repeat;
+      background-position: center;
+      cursor: pointer; }
+      .music_arrangement__user--twitter a {
+        display: block;
+        width: 42px;
+        height: 42px; }
+    .music_arrangement__user--instagram {
+      width: 42px;
+      height: 42px;
+      background: url("../../img/instagram.svg") no-repeat;
+      background-position: center;
+      cursor: pointer; }
+      .music_arrangement__user--instagram a {
+        display: block;
+        width: 42px;
+        height: 42px; }
+    .music_arrangement__user--soundcloud {
+      width: 42px;
+      height: 42px;
+      background: url("../../img/soundcloud.svg") no-repeat;
+      background-position: center;
+      cursor: pointer; }
+      .music_arrangement__user--soundcloud a {
+        display: block;
+        width: 42px;
+        height: 42px; }
+    .music_arrangement__user--spotify {
+      width: 42px;
+      height: 42px;
+      background: url("../../img/spotify.svg") no-repeat;
+      background-position: center;
+      cursor: pointer; }
+      .music_arrangement__user--spotify a {
+        display: block;
+        width: 42px;
+        height: 42px; }
+    .music_arrangement__user--applemusic {
+      width: 42px;
+      height: 42px;
+      background: url("../../img/applemusic.svg") no-repeat;
+      background-position: center;
+      cursor: pointer; }
+      .music_arrangement__user--applemusic a {
+        display: block;
+        width: 42px;
+        height: 42px; }
+    .music_arrangement__user--site {
+      padding-top: 15px;
+      background: url("../../img/link.png") no-repeat;
+      background-position: top 40% left;
+      word-wrap: break-word;
+      padding-left: 44px; }
+      .music_arrangement__user--site a {
+        border-bottom: 1px solid #969696;
+        font-size: 14px;
+        color: #969696; }
+    .music_arrangement__user--follow {
+      padding-top: 15px; }
+      .music_arrangement__user--follow a {
+        display: block;
+        background: #303841;
+        line-height: 40px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        color: white; }
+  .music_arrangement__contents {
+    grid-area: contents; }
+  .music_arrangement__music--sound {
+    padding-top: 20px;
+    padding-left: 73px; }
+    .music_arrangement__music--sound #waveform {
+      width: 572px;
+      padding-top: 15px;
+      margin-left: 77px; }
+  .music_arrangement__music--header {
+    display: grid;
+    grid-template-columns: 77px  1fr;
+    grid-template-rows: 53px;
+    grid-template-areas: "btn title"; }
+    .music_arrangement__music--header #play {
+      grid-area: btn;
+      cursor: pointer;
+      width: 53px;
+      height: 53px;
+      background-image: url("../../img/arPlay.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center; }
+    .music_arrangement__music--header h3 {
+      grid-area: title;
+      display: flex;
+      flex-direction: column;
+      font-size: 32px;
+      font-weight: bold; }
+      .music_arrangement__music--header h3 span {
+        font-size: 12px;
+        color: gray; }
+  .music_arrangement__music #tag {
+    padding-top: 15px;
+    padding-left: 77px; }
+    .music_arrangement__music #tag p {
+      display: inline;
+      padding: 0px 45px;
+      margin: 0px 30px;
+      background: #303841;
+      line-height: 40px;
+      border: 3px solid #303841;
+      border-radius: 30px;
+      font-weight: bold;
+      color: #FFFFFF;
+      margin: 0; }
+  .music_arrangement__music ul {
+    padding-top: 20px;
+    padding-bottom: 55px;
+    display: flex;
+    justify-content: space-between; }
+    .music_arrangement__music ul li {
+      line-height: 40px; }
+    .music_arrangement__music ul #likeButton {
+      padding-left: 70px;
+      padding-right: 20px;
+      background-color: #D3D6DB;
+      background-image: url("../../img/good.svg");
+      background-repeat: no-repeat;
+      background-position: left 20px top 9px;
+      font-weight: bold;
+      cursor: pointer; }
+      .music_arrangement__music ul #likeButton:hover {
+        color: white; }
+    .music_arrangement__music ul .dlButton {
+      background-color: #D3D6DB;
+      font-weight: bold;
+      cursor: pointer; }
+      .music_arrangement__music ul .dlButton button {
+        display: flex; }
+      .music_arrangement__music ul .dlButton__title {
+        padding-left: 70px;
+        padding-right: 70px; }
+      .music_arrangement__music ul .dlButton__val {
+        display: block;
+        padding-left: 67px;
+        padding-right: 25px;
+        background-color: #303841;
+        background-image: url("../../img/dlWhite.svg");
+        background-repeat: no-repeat;
+        background-position: left 20px center;
+        color: white; }
+  .music_arrangement__other h3 {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-bottom: 1px solid #D3D6DB;
+    line-height: 23px;
+    font-size: 18px;
+    font-weight: bold; }
+  .music_arrangement__other #otherUser {
+    padding-top: 20px;
+    display: flex; }
+    .music_arrangement__other #otherUser div {
+      width: 100%;
+      padding-left: 20px; }
+      .music_arrangement__other #otherUser div .otherUsername {
+        font-weight: bold;
+        font-size: 28px; }
+      .music_arrangement__other #otherUser div ul:nth-of-type(1) {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 25px;
+        padding-bottom: 5px;
+        font-weight: bold;
+        font-size: 13px;
+        color: #D3D6DB; }
+      .music_arrangement__other #otherUser div a {
+        display: flex;
+        line-height: 52px;
+        background-color: #303841;
+        background-image: url("../../img/audio.svg");
+        background-repeat: no-repeat;
+        background-position: left 15px center;
+        font-weight: bold;
+        font-size: 14px;
+        color: white; }
+        .music_arrangement__other #otherUser div a p:nth-of-type(1) {
+          padding-left: 59px;
+          flex-basis: 566px; }
+        .music_arrangement__other #otherUser div a p:nth-of-type(2) {
+          flex-basis: 69px;
+          padding-left: 30px;
+          background: url("../../img/dlWhite.svg") no-repeat;
+          background-position: left center; }
+        .music_arrangement__other #otherUser div a p:nth-of-type(3) {
+          flex-basis: 72px;
+          padding-left: 30px;
+          background: url("../../img/goodWhite.svg") no-repeat;
+          background-position: left center; }
+  .music_arrangement__info {
+    padding-top: 50px;
+    padding-bottom: 35px; }
+    .music_arrangement__info h3 {
+      padding-bottom: 5px;
+      padding-left: 10px;
+      border-bottom: 1px solid #D3D6DB;
+      line-height: 23px;
+      font-size: 18px;
+      font-weight: bold; }
+    .music_arrangement__info p {
+      padding: 10px;
+      font-weight: bold;
+      font-size: 14px; }
+  .music_arrangement__rules h3 {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-bottom: 1px solid #D3D6DB;
+    line-height: 23px;
+    font-size: 18px;
+    font-weight: bold; }
+  .music_arrangement__rules ul {
+    display: flex; }
+    .music_arrangement__rules ul li {
+      padding: 0px 45px;
+      margin: 10px;
+      background: black;
+      line-height: 40px;
+      border-radius: 30px;
+      font-weight: bold;
+      color: white; }
+
+/*# sourceMappingURL=music_arrangement.css.map */

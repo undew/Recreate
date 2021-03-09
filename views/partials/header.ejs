@@ -1,0 +1,26 @@
+<header class="header">
+    <div class="header__wrapper">
+        <h1 class="header__logo"><a href="/">Recreate</a></h1>
+        <form action="/search" method="post">
+            <div class="header__search">
+                <input type="text" name="word">
+            </div>
+        </form>
+        <% if (userFlg) { %>
+        <button class="header__upload">
+            <a href="/upload">音源を投稿する</a>
+        </button>
+        <details class="header__news">
+            <summary>
+                <img src="../../img/news.svg" alt="">
+            </summary>
+            <p class="details">ここにニュース</p>
+        </details>
+        <p class="header__name"><a href="/mypage/<%= userFlg %>"><%= username %></a></p>
+        <% }else{ %>
+            <p class="header__info"><a href="/info">Recreateとは</a></p>
+            <button class="header__login"><a href="/signIn">ログイン</a></button>
+            <button class="header__login"><a href="/signUp">新規登録</a></button>
+        <% } %>
+    </div>
+</header>

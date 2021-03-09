@@ -1,0 +1,68 @@
+@import "common.scss";
+
+*{
+    letter-spacing: 1px;
+}
+@import "header.scss";
+.signUp{
+    width:566px;
+    margin: 0 auto;
+    &__contents{
+        margin-top: 160px;
+        border: 1px solid $gray;
+        text-align: center;
+        h2{
+            margin-top: 100px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 36px;
+        }
+        ul{
+            width:274px;
+            margin: 0 auto;
+            margin-top: 78px;
+            text-align: left;
+        }
+        li{            
+            position:relative;
+            margin-top: 45px;
+            line-height: 40px;
+            border-bottom: 1px solid $gray;
+            font-size: 18px;
+        }
+        &--text:before{
+                content:"UserName";
+                position:absolute;
+                top:-30px;
+                font-size:14px;
+                color: $gray;
+        }
+        &--email:before{
+            content:"Email";
+            position:absolute;
+            top:-30px;
+            font-size:14px;
+            color: $gray;
+        }
+        &--password:before{
+            content:"Password";
+            position:absolute;
+            top:-30px;
+            font-size:14px;
+            color: $gray;
+        }
+        button{
+            width:274px;
+            margin-top: 100px;
+            margin-bottom: 50px;
+            background: $black;
+            border: 1px solid $black;
+            border-radius: 30px;
+            line-height: 40px;
+            font-size: 18px;
+            text-align: center;
+            color: $white;
+        }
+    }
+}
+@import "footer.scss";

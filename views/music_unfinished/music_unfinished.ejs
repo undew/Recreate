@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto:wght@700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="../scss/css/destyle.css" type="text/css">
+    <link rel="stylesheet" href="../scss/css/music_unfinished.css" type="text/css">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs'); %>
+    <form action="/download" method="post" class="form">
+        <!-- いいねを押したときに渡さないと行けない値一覧 -->
+        <input type="hidden" name="userId" id="userId" value="<%= users.id %>">
+        <input type="hidden" name="musicId" id="musicId" value="<%= music.id %>">
+        <input type="hidden" name="musicName" id="musicName" value="<%= music.uTitle %>">
+        <input type="hidden" name="audioPath" id="audioPath" value="<%= audioPath %>">
+        <input type="hidden" name="filename" id="filename" value="music_unfinished">
+        <input type="hidden" name="likeDB" id="likeDB" value="like_un">
+        <input type="hidden" name="likeColumn" id="likeColumn" value="UnId">
+        <!-- ここまで -->
+    <main class="music_unfinished">
+        
+        <article class="music_unfinished__user">
+            <img src="../img/user.png" alt="">
+            <h3 class="music_unfinished__user--name"><%= users.username %></h3>
+            <% if(users.site){ %>
+            <p class="music_unfinished__user--site"><a href="https://expressjs.com/ja/api.html#app.use" target="_blank"><%= users.site %></a></p>
+            <% } %>
+            <ul>
+                <% for(var key in subscriptions) { %>
+                    <% if(subscriptions[key] !== 'NULL'){ %>
+                        <li class="music_unfinished__user--<%= key %>"><a href="<%= subscriptions[key] %>"></a></li>
+                    <% } %>
+                <% } %>
+                </ul>
+            <p class="music_unfinished__user--follow"><a href="/follow">フォローする</a></p>
+        </article>
+
+        <article class="music_unfinished__contents">
+            <section class="music_unfinished__music">
+                <div class="music_unfinished__music--sound">
+                        <div class="music_unfinished__music--header">
+                            <p id="play">　</p>
+                            <h3><%= music.uTitle%><span><%= music.uCreated%></span></h3>
+                        </div>
+                        <div id="tag"><p><%= music.uTag %></p></div>
+                        <div id="waveform"></div>
+                </div>
+                <ul>
+                    <li id="likeButton"><%= music.uGood %><input type="hidden" id="Good" value="<%= music.uGood %>"></li>
+                    <li class="dlButton">
+                        <button type="submit"><span class="dlButton__title">音源をダウンロード(.mp3)</span><span class="dlButton__val"><%= music.uDl %></span></button>
+                    </li>
+                </ul>
+            </section> 
+            </form>
+            <section class="music_unfinished__info">
+                <h3>概要</h3>
+                <p><%= music.uInfo %></p>
+            </section>
+            <section class="music_unfinished__other">
+                <h3>この曲を使用した音楽</h3>
+                <div class="music_unfinished__otherHeader">
+                    <ul>
+                        <li class="music_unfinished__otherHeader--Title">タイトル</li>
+                        <li class="music_unfinished__otherHeader--Arranger">編曲者</li>
+                        <li class="music_unfinished__otherHeader--GoodAndDl">Good / DL</li>
+                    </ul>
+                </div>
+                <div class="music_unfinished__otherMusic">
+                    <% for(var i = 0;i<arrangedMusic.length;i++){ %>
+                   <a href="/music_arrangement/<%= arrangedMusic[i].id %>">
+                        <p class="Title"><%= arrangedMusic[i].mTitle %><span><%= arrangedMusic[i].mName %></span></p>
+                        <p><%= arrangedMusic[i].mProvider %></p>
+                        <div>
+                            <p class="mGood"><%= arrangedMusic[i].mGood %></p>
+                            <p class="mDl"><%= arrangedMusic[i].mDl %></p>
+                        </div>
+                   </a>
+                   <% } %>
+                </div>
+            </section>
+        </article>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+    <script src="../js/music_unfinished.js"></script>
+</body>
+</html>
+
