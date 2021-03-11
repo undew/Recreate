@@ -1,5 +1,5 @@
 "use strict"
-
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -17,17 +17,25 @@ app.use(express.static('audio'));
 app.use(express.static('images'));
 app.use(express.static("views"));
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false ,limit : '100mb'}));
 app.use(bodyParser.json());
-//app.use(express.cookieParser('keyboard cat'));
 app.use(cookieParser('keyboard cat'));
+app.use(function (req, res, next){
+	var user_id = req.cookies.userId;
+	var username = req.cookies.username;
+	if(typeof user_id === "undefined"){
+		user_id = 0;
+		username = "";
+	}
+	next();
+})
 
-//app.use(express.session({ cookie: { maxAge: 60000 }}));
 app.use(session({
     resave: true,
     saveUninitialized: true,
     secret: 'rAnd0m',
-    cookie: { maxAge: 60000 }}));
+	cookie: { maxAge: 60000 }
+}));
 
 app.use(flash());
 const arranged = multer.diskStorage({
@@ -45,7 +53,7 @@ const arranged = multer.diskStorage({
 			console.log(results);
 			let extension = file.originalname.substr(-4);
 
-			cb(null, req.cookies.username + (results[0].id + 1)+"_A" +extension);
+			cb(null, req.cookies.userId+"_" + (results[0].id + 1)+"_A" +extension);
 			});
 	}
 })
@@ -67,22 +75,12 @@ const unfinished = multer.diskStorage({
 			console.log(results);
 			let extension = file.originalname.substr(-4);
 
-			cb(null, req.cookies.username + (results[0].id+1)+"_U"+extension);
+			cb(null, req.cookies.userId +"_"+ (results[0].id+1)+"_U"+extension);
 			});
 	}
 })
-const images = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, 'public/img/user');
-	},
-	filename: function (req, file, cb) {
-		let extension = file.originalname.substr(-4);
-			cb(null, req.cookies.username +"_"+ req.cookies.userId+extension);
-		}
-})
 const arrange = multer({ storage: arranged });
 const unfinish = multer({ storage: unfinished });
-const image = multer({ storage: images });
 //DBへの接続
 const connection = mysql.createConnection({
 	host: 'localhost',
@@ -111,6 +109,7 @@ const { max } = require('moment');
 const { promises } = require('fs');
 const { resolve } = require('path');
 const { rejects } = require('assert');
+const { exit } = require('process');
 passport.serializeUser(function(user, done) {
 	done(null, user);
 });
@@ -149,14 +148,6 @@ passport.use(new LocalStrategy(
 ));
 
 app.get('/', async (req, res) => {
-	console.log(req.cookies.userId);
-	var user_id = req.cookies.userId;
-	var username = req.cookies.username;
-	if(typeof user_id === "undefined"){
-		user_id = 0;
-		username = "";
-	}
-	console.log(username);
 	let sql = "SELECT * FROM music_arrangement";
 	connection.query(sql,(error,results) => {
 		if(error) {
@@ -165,9 +156,9 @@ app.get('/', async (req, res) => {
 		}
 		console.log('success');
 		res.render('index.ejs', {
-			userFlg: user_id,
+			userFlg: req.cookies.userId,
 			values: results,
-			username:username,
+			username:req.cookies.username,
 			moment:moment
 		});
 	});
@@ -185,13 +176,9 @@ app.post('/popularArrange', (req, res) => {
 	});
 })
 app.post('/search', (req, res) => {
-	let word = req.body.word
-	var user_id = req.cookies.userId;
-	if(typeof user_id === "undefined"){
-		user_id = 0;
-	}
+	let word = req.body.word;
 	res.render('search/search.ejs', {
-		userFlg: user_id,
+		userFlg: req.cookies.userId,
 		username: req.cookies.username,
 		word:word
 	});	
@@ -199,13 +186,9 @@ app.post('/search', (req, res) => {
 })
 app.get('/search/:word', (req, res) => {
 	let word = req.params.word;
-	console.log(word);
-	var user_id = req.cookies.userId;
-	if(typeof user_id === "undefined"){
-		user_id = 0;
-	}
+
 	let mTitle = "SELECT * FROM music_arrangement where mTitle like '%" + word + "%' OR mName like '%" + word +"%' OR mTag like '%"+word+"%';";
-	let uTitle = "SELECT * FROM music_unfinished WHERE uTitle like '%" + word + "%' OR uName like '% "+word+"%' OR uTag like '%"+word+"';";
+	let uTitle = "SELECT * FROM music_unfinished WHERE uTitle like '%" + word + "%' OR uName like '%"+word+"%' OR uTag like '%"+word+"';";
 	connection.query(mTitle + uTitle, (err, results) => {
 		res.send({
 			arranged: results[0],
@@ -216,11 +199,6 @@ app.get('/search/:word', (req, res) => {
 })
 app.get('/music_arrangement/:id', (req, res) => {
 	console.log(req.params.id);
-	var user_id = req.cookies.userId;
-	var username = req.cookies.username;
-	if(typeof user_id === "undefined"){
-		user_id = 0;
-	}
 	//params(id)の値と合致する編曲済み曲をとってくる
 	let music = "SELECT * FROM music_arrangement WHERE id =" + req.params.id;
 	connection.query(music, (err, results) => {
@@ -250,14 +228,14 @@ app.get('/music_arrangement/:id', (req, res) => {
 					
 				}
 				res.render('music_arrangement/music_arrangement.ejs', {
-					userFlg: user_id,
-					username: username,
+					userFlg: req.cookies.userId,
+					username: req.cookies.username,
 					subscriptions: subscriptions,
 					music: music,
 					id: req.params.id,
 					users: user,
 					provider: results[0],
-					audioPath: music.mSound + '/' +music.mName + req.params.id + "_A.mp3",
+					audioPath: music.mSound + '/' +music.userId + "_" + req.params.id + "_A.mp3",
 					unfinishedPath:"/music_unfinished/" + results[0].id
 				})
 			})
@@ -265,12 +243,6 @@ app.get('/music_arrangement/:id', (req, res) => {
 	});
 })
 app.get('/music_unfinished/:id', (req, res) => {
-	console.log(req.params.id);
-	var user_id = req.cookies.userId;
-	var username = req.cookies.username;
-	if (typeof user_id === "undefined") {
-		user_id = 0;
-	}
 
 	// 複数のmysqlを実行する場合、;を適切につける（じゃないと連結するさいに一つのsqlとして処理される）
 	let sql1 = "SELECT * FROM music_unfinished where id = "+req.params.id+";";
@@ -301,14 +273,14 @@ app.get('/music_unfinished/:id', (req, res) => {
 				}
 				console.log(results);
 				res.render('music_unfinished/music_unfinished.ejs', {
-					userFlg: user_id,
-					username: username,
+					userFlg: req.cookies.userId,
+					username: req.cookies.username,
 					id: req.params.id,
 					music:music,
 					users: users,
 					subscriptions: subscriptions,
 					arrangedMusic:results,
-					audioPath: music.uSound + "/" + music.uName + req.params.id + "_U.mp3",
+					audioPath: music.uSound + "/" + music.userId + "_" + req.params.id + "_U.mp3",
 				})
 			})
 	})
@@ -380,8 +352,10 @@ app.post('/download', (req, res) => {
 				if (filename == 'music_arrangement') {
 					dlNum = results[0].mDl;
 				}
-				let update = "UPDATE "+ filename +" SET "+ dlName+" = ? WHERE id=" + musicId + ";";
-				connection.query(update,[dlNum+1] ,(error, results) => {
+				let param = dlNum + 1;
+				let update = "UPDATE "+ filename +" SET "+ dlName+" = "+ param +" WHERE id=" + musicId + ";";
+				let insert = "INSERT INTO download(userId,unfinishedId)VALUES(" + req.cookies.userId + ","+ musicId+");";
+				connection.query(update+insert, (error, results) => {
 					if (error) {
 							
 					}
@@ -392,10 +366,7 @@ app.post('/download', (req, res) => {
 	
 })
 app.get('/mypage/:id', (req, res) => {
-	var user_id = req.cookies.userId;
-	if(typeof user_id === "undefined"){
-		user_id = 0;
-	}
+
 	let user = 'SELECT * FROM user where id =' + req.cookies.userId + ";";
 	connection.query(user,(error,results) => {
 		if(error) {
@@ -403,33 +374,40 @@ app.get('/mypage/:id', (req, res) => {
 			return;
 		}
 		res.render('mypage/mypage.ejs', {
-			userFlg: user_id,
+			userFlg: req.cookies.userId,
 			username: req.cookies.username,
 			values: results,
+			image: results[0].image +"/" + req.cookies.userId + ".png"
 		});
 	});
 })
 app.get('/profile/:id', (req, res)=>{
-	var user_id = req.cookies.userId;
-	var username = req.cookies.username;
-	if(typeof user_id === "undefined"){
-		user_id = 0;
-	}
-	let sql = "SELECT * FROM user WHERE id=" + user_id + ";";
+
+	let sql = "SELECT * FROM user WHERE id=" + req.cookies.userId + ";";
 	connection.query(sql, (err,results) => {
 		if (err) {
 			
 		}
-		console.log(results[0]);
 		res.render('profile/profile.ejs', {
-			userFlg: user_id,
-			username:username,
+			userFlg: req.cookies.userId,
+			username:req.cookies.username,
 			profile: results[0],
-			image: results[0].image + "/" + req.cookies.username + "_" + req.cookies.userId + ".png"
+			image: results[0].image + "/" + req.cookies.userId + ".png"
 		})
 	})
 })
-app.post('/profile/:id', image.single('triming_image'), async (req, res) => {
+app.post('/profile', (req, res) => {
+	if (req.body.resultImage != "") {
+		const base64 = req.body.resultImage.split(',')[1];
+		const decode = new Buffer.from(base64, 'base64');
+		const path = "public/img/user/" + req.cookies.userId + ".png";
+		fs.writeFile(path, decode, (err) => {
+			if (err) {
+				console.log(err);
+			}
+		});
+	}
+
 	let sql = "UPDATE user SET username = ?,image = ?,info = ?,site=?,twitter = ?,instagram = ?,soundcloud = ?,spotify = ?,applemusic = ? WHERE id = ?;";
 	connection.query(sql, [
 		req.body.username,
@@ -443,12 +421,31 @@ app.post('/profile/:id', image.single('triming_image'), async (req, res) => {
 		req.body.AppleMusic,
 		req.cookies.userId
 	], (err, results) => {
-			if (err) {
-				console.log(err);
-			}		
+		if (err) {
+			console.log(err);
+		}
+		// ユーザーネームに変更が加えられた場合のみ
+		if (req.body.username !== req.cookies.username) {
+			let arranged = "UPDATE music_arrangement SET mName = '" + req.body.username + "' WHERE userId = " + req.cookies.userId + ";";
+			let unfinished = "UPDATE music_unfinished SET uName = '" + req.body.username + "' WHERE userId = " + req.cookies.userId + ";";
+			console.log(arranged, unfinished);
+			connection.query(arranged + unfinished, (err, results) => {
+				if (err) {
+					console.log(err);
+				}
+				console.log('WELCOME');
+				res.cookie('username', req.body.username, { maxAge: 1000 * 60 * 60, httpOnly: false });
+				req.flash('success', 'プロフィールを更新しました。');
+				res.redirect('/');
+				res.end();
+			})
+		} else {
+			console.log('hello');
 			req.flash('success', 'プロフィールを更新しました。');
 			res.redirect('/');
+		}
 	})
+
 })
 
 /**
@@ -509,18 +506,16 @@ app.post('/navLike', async (req, res) => {
 	})
 })
 app.get('/upload', (req, res) => {
-	var user_id = req.cookies.userId;
-	if(typeof user_id === "undefined"){
-		user_id = 0;
-	}
+
 		//編曲した曲をアップロードするとき、アップロードするユーザがサイト内でダウンロードした未完成曲のリストを取得したい。
 		let sql = "SELECT * FROM music_unfinished as mu inner join download on mu.id = download.unfinishedId where download.userId = "+req.cookies.userId;	
 		connection.query(sql,(err,results) => {
 			if (err) {
 				
 			}
+			console.log(results);
 			res.render('upload/upload.ejs', {
-			userFlg: user_id,
+			userFlg: req.cookies.userId,
 			musics: results,
 			username: req.cookies.username
 			});	
@@ -575,11 +570,6 @@ app.post('/arrangeResult', arrange.single('file'), (req, res) => {
 	var Month = today.getMonth();
 	var Day = today.getDate();
 
-	var user_id = req.cookies.userId;
-	var username = req.cookies.username;
-	if(typeof user_id === "undefined"){
-		user_id = 0;
-	}
 	console.log(req.file);
 	console.log(req.body);
 	let sql = "SELECT uName FROM music_unfinished WHERE id = " + req.body.provider;
@@ -610,9 +600,9 @@ app.post('/arrangeResult', arrange.single('file'), (req, res) => {
 			}
 			console.log('success');
 			res.render('index.ejs', {
-				userFlg: user_id,
+				userFlg: req.cookies.userId,
 				values: results,
-				username:username,
+				username:req.cookies.username,
 				moment:moment
 			});
 		});
@@ -623,11 +613,7 @@ app.post('/unfinishedResult', unfinish.single('file'),(req, res) => {
 	var year = today.getFullYear();
 	var Month = today.getMonth();
 	var Day = today.getDate();
-	var user_id = req.cookies.userId;
-	var username = req.cookies.username;
-	if(typeof user_id === "undefined"){
-		user_id = 0;
-	}	
+
 	console.log(req.body);
 	console.log(req.file);
 	console.log(req.body.title);
@@ -653,9 +639,9 @@ app.post('/unfinishedResult', unfinish.single('file'),(req, res) => {
 		// unfinish.single('file');
 		console.log('success');
 		res.render('index.ejs', {
-			userFlg: user_id,
+			userFlg: req.cookies.userId,
 			values: results,
-			username:username,
+			username:req.cookies.username,
 			moment:moment
 		});
 	});

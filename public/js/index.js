@@ -79,19 +79,24 @@ pA.addEventListener('click', () => {
         }
     });
 })
-for (let i = 0; i < tagWord.length; i++){
-    tagWord[i].onclick = function () {
-        console.log(i);
-        const word = tagWord[i].textContent;
-        const form = document.createElement('form');
-        form.method = "POST";
-        form.action = "/search/"+word;
-        const input = document.createElement('input');
-        input.type = "hidden";
-        input.name = "word";
-        input.value = word;
-        form.appendChild(input);
-        document.body.appendChild(form);
-        form.submit();
+var app = new Vue({
+    el: "#app",
+    data: {
+        searchWord: [
+            { message: 'studio one' },
+            {message:'Funk'},
+            {message:'POP'},
+        ]
+    },
+    methods: {
+        search: function (keyword) {
+            var html = "<form method='post' action='/search' id='refresh' style='display: none;'>" +
+            "<input type='hidden' name='word' value='"+ keyword +"' >" +
+            "</form>";
+          
+          $("body").append(html);
+          
+          $("#refresh").submit();
+        },
     }
-}
+})

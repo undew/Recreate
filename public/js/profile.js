@@ -1,6 +1,5 @@
 
 $(function () {
-
     $('#triming_image').on('change', function (event) {
         console.log("www");
         var trimingImage = event.target.files;
@@ -44,9 +43,11 @@ $(function () {
         fileReader.onloadend = function(e){
             var image = document.getElementById('trimed_image');
             var button = document.getElementById('crop_btn');
+            var close = document.getElementById('close_btn');
+            console.log(button, close);
             var popup = document.getElementById('js-popup');
             if(!popup) return;
-            popup.classList.add('is-show');
+            popup.classList.toggle('is-show');
           
             var blackBg = document.getElementById('js-black-bg');
             var closeBtn = document.getElementById('js-close-btn');
@@ -63,25 +64,36 @@ $(function () {
                 },
             });
             button.onclick = function () {
-                var cropperCanvas;
+                var croppedCanvas;
+                let triming = document.getElementById('triming');
                 croppedCanvas = cropper.getCroppedCanvas();
-                console.log(cropperCanvas);
+                console.log(croppedCanvas);
                 var result = document.getElementById('results');
                 var roundedImage;
                 roundedCanvas = croppedCanvas;
                 roundedImage = document.createElement('img');
                 roundedImage.src = roundedCanvas.toDataURL();
+                let textarea = document.getElementById('resultImage');
+                textarea.value = roundedCanvas.toDataURL();
                 roundedImage.name = 'trimed';
                 roundedImage.id = 'trimed';
                 result.innerHTML = `<span><img src="../../img/updateProfile.svg"></span>`;
                 result.appendChild(roundedImage);
+                triming.innerHTML = `<img src="" alt="トリミング画像" id="trimed_image" style="display: none;" />`;
                 console.log(result);
+                popup.classList.toggle('is-show');
+            }
+            close.onclick = function () {
+                console.log('hello');
+                popup.classList.toggle('is-show');
+                let triming = document.getElementById('triming');
+                triming.innerHTML = `<img src="" alt="トリミング画像" id="trimed_image" style="display: none;" />`;
             }
             function closePopUp(elem) {
-                if(!elem) return;
                 elem.addEventListener('click', function() {
                   popup.classList.toggle('is-show');
                 })
+                
               }
         };
     });

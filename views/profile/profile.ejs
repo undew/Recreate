@@ -15,22 +15,26 @@
 <body>
     <%- include('../partials/header.ejs'); %>
     <main class="profile">
+    <form action="/profile" method="POST">
         <article class="profile__header">
             <h2>PROFILE EDIT<span>プロフィール編集</span></h2>
         </article>
         <article>
-            <form action="/profile/<%= userFlg %>" method="post" enctype="multipart/form-data">
             <div class="profile__photo cropper-container">
                 <label for="file_upload">
-                <input type="file" id="triming_image" name="triming_image" class="triming-image" accept="image/*"/>
-                <p id = "results" class="profile__photo--userPhoto"><span><img src="../../img/updateProfile.svg"></span><img src="../<%= image %>" alt="" class="userBg"></p>
+                <input type="file" id="triming_image" name="triming_image" class="triming-image" accept="image/png"/>
+                <p id = "results" class="profile__photo--userPhoto">
+                    <span><img src="../../img/updateProfile.svg"></span>
+                    <img src="..<%= image %>" alt="" class="userBg">
+                </p>
                 </label>
             </div>
             <div class="popup" id="js-popup">
                 <div class="popup-inner">
                   <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
-                  <p><img src="" alt="トリミング画像" id="trimed_image" style="display: none;" /></p>
+                  <p id="triming"><img src="" alt="トリミング画像" id="trimed_image" style="display: none;" /></p>
                   <p class="crop_btn"><input type="button" id="crop_btn" value="画像をトリミングして送信" /></p>
+                  <p class="close_btn"><input type="button" id="close_btn" value="戻る"></p>
                 </div>
                 <div class="black-background" id="js-black-bg"></div>
             </div>
@@ -73,9 +77,10 @@
                     </li>
                 </ul>
             </section>
+            <input type="hidden" name="resultImage" id="resultImage" value="">
             <button type="submit">編集を保存する</button>
-        </form>
         </article>
+    </form>
     </main>
     <%- include('../partials/footer.ejs') %>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="UTF-8"></script>

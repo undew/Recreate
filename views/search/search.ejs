@@ -19,15 +19,15 @@
     <main id="app" class="search">
         <section>
             <div class="search__form">
-                <input type="text" name="word" id = "word" class="search__form--searchWord" value="<%= word %>">
-                <button id="btn">検索</button>
+                <input type="text" name="word" id = "word" class="search__form--searchWord" value="<%= word %>" v-on:keyup.enter="search">
+                <button id="btn" v-on:click="search">検索</button>
             </div>
             
             <div class="search__formResult">
-                <p><%= word %><span>の検索結果</span></p>
+                <p>{{ searchWord }}<span>の検索結果</span></p>
                 <nav class="search__formResult--button">
-                    <button v-on:click="showMusicList('Ar')">編曲済み</button>
-                    <button v-on:click="showMusicList('Un')">未完成曲</button>
+                    <button v-bind:style="ArStyle" v-on:click="showMusicList('Ar')">編曲済み</button>
+                    <button v-bind:style="UnStyle" v-on:click="showMusicList('Un')">未完成曲</button>
                 </nav>
             </div>
         </section>
@@ -76,7 +76,7 @@
                                                 <span class="search__searchResult-content--UserName">{{ music.uName}}</span>
                                             </li>
                                             <li class="search__searchResult-content--Tag">
-                                                <p>{{ music.mTag }}</p> 
+                                                <p>{{ music.uTag }}</p> 
                                             </li>
                                             <li class="search__searchResult-content--Provider">{{ music.uProvider }}</li>
                                             <li class="search__searchResult-content--Created">{{ music.uCreated }}</li>

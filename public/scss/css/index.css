@@ -3,6 +3,7 @@
 
 .header {
   position: fixed;
+  z-index: 999;
   width: 100%;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -142,7 +143,10 @@
     border-radius: 30px;
     line-height: 37px;
     font-weight: bold;
-    color: #303841; }
+    color: #303841;
+    cursor: pointer; }
+  .index__tagList li:hover {
+    background: #D3D6DB; }
 .index__main {
   width: 1154px;
   margin: 0 auto; }
@@ -400,7 +404,8 @@
     font-weight: bold;
     color: #FFFFFF; }
 
-main {
+main,
+.form {
   padding-top: 70px; }
 
 .footer {

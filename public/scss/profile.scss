@@ -77,6 +77,17 @@
             text-align: center;
         }
     }
+    .close_btn{  
+        padding-top: 20px;
+        #close_btn{
+            @include btnFormat($red,$white);
+            border: 3px solid $red;
+            margin: 0 auto;
+            width:100%;
+            text-align: center;
+        }
+    }
+
     &__form{
         section{
             font-size: 18px;

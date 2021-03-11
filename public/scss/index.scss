@@ -83,6 +83,10 @@
             line-height: 37px;
             font-weight: bold;
             color: $black;
+            cursor: pointer;
+        }
+        li:hover{
+            background: $gray;
         }
     }
     &__main{
